@@ -1,9 +1,7 @@
 <?php
     include_once 'user_session.php';
+    $user_session = new UserSession();
+    $user_session->closeSession();
 
-    $userSession = new UserSession();
-    $userSession->closeSession();
-
-    header("location: ../index.php");
-
+    header("location:../index.php");
 ?>
