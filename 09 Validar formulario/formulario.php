@@ -38,14 +38,24 @@
 <body>
 	<form action="formulario.php" method="POST">
 		<?php
-			
+			$nombre="";
+			$password="";
+			$email=""; 
+			$pais="";
+			$nivel="";
 			if(isset($_POST['nombre'])){
 				$nombre = $_POST['nombre'];
 				$password = $_POST['password'];
 				$email = $_POST['email'];
-
+				$pais= $_POST['pais'];
+				
 				$campos = array();
-
+				if(isset($_POST['nivel'])){
+					$nivel=$_POST['nivel'];
+				}
+				else{
+					$nivel="";
+				}
 				if($nombre == ""){
 					array_push($campos, "El campo Nombre no pude estar vacío");
 				}
@@ -58,6 +68,12 @@
 					array_push($campos, "Ingresa un correo electrónico válido.");
 				}
 
+				if($pais==""){
+					array_push($campos,"Selecione un pais");
+				}
+				if($nivel==""){
+					array_push($campos,"Selecione un nivel de desarrollo");
+				}
 				if(count($campos) > 0){
 					echo "<div class='error'>";
 					for($i = 0; $i < count($campos); $i++){
@@ -72,19 +88,33 @@
 		?>
 		<p>
 		Nombre:<br/>
-		<input type="text" name="nombre">
+		<input type="text" name="nombre" value="<?php echo $nombre;?>">
 		</p>
 
 		<p>
 		Password:<br/>
-		<input type="password" name="password">
+		<input type="password" name="password" value="<?php echo $password;?>">
 		</p>
 
 		<p>
 		correo electrónico:<br/>
-		<input type="text" name="email">
+		<input type="text" name="email" value="<?php echo $email;?>">
 		</p>
+		<p>
+			Pais de origen<br/>
+			<select name="pais" id="">
+				<option value="">Selecione un país</option>
+				<option value="mx"<?php if($pais== "mx") echo "selected"?> >México</option>
+				<option value="eu"<?php if($pais== "eu") echo "selected"?> >Estados unidos</option>
 
+			</select>		
+		</p>	
+		<p>
+			Nivel de desarrollo <br>
+			<input type="radio" name="nivel" value="principiante" <?php if($nivel== "principiante") echo "checked"?>>principiante
+			<input type="radio" name="nivel" value="Intermedio" <?php if($nivel== "Intermedio") echo "checked"?>>intermedio
+			<input type="radio" name="nivel" value="avanzado" <?php if($nivel== "avanzado") echo "checked"?>>avanzado
+		</p>
 		<p><input type="submit" value="enviar datos"></p> 
 	</form>
 </body>

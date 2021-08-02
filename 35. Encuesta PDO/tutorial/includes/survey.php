@@ -2,14 +2,14 @@
 include_once 'db.php';
 
 class Survey extends DB{
-
+    //VAriables golbales de los votos
     private $totalVotes;
     private $optionSelected;
-
+    //funciones para sumar los votos
     public function setOptionSelected($option){
         $this->optionSelected = $option;
     }
-
+    //Fucion para devolver el valor
     public function getOptionSelected(){
         return $this->optionSelected;
     }
@@ -28,7 +28,7 @@ class Survey extends DB{
         $this->totalVotes = $query->fetch(PDO::FETCH_OBJ)->votos_totales;
         return $this->totalVotes;
     }
-
+    //el total redondeado
     public function getPercentageVotes($votes){
         return round(($votes / $this->totalVotes) * 100, 0);
     }
