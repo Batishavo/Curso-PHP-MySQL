@@ -11,14 +11,14 @@ class DB{
         $this->host     = 'localhost';
         $this->db       = 'encuestas';
         $this->user     = 'root';
-        $this->password = "123!\"·QWE";
+        $this->password = "";
         $this->charset  = 'utf8mb4';
     }
 
     public function connect(){
         try{
             $connection = "mysql:host=" . $this->host . ";dbname=" . $this->db . ";charset=" . $this->charset;
-
+            //caracteristicas de PFO, se utilisa para tener mas informacion de los errores
             $options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                         PDO::ATTR_EMULATE_PREPARES => false];
 

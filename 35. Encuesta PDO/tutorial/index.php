@@ -29,7 +29,7 @@
             if($showResults){
                 $lenguajes = $survey->showResults();
 
-                echo '<h2>' . $survey->getTotalVotes() . ' votos totales</h2>';
+                 echo '<h2>' . $survey->getTotalVotes() . ' votos totales</h2>';
 
                 foreach($lenguajes as $lenguaje){
                     $porcentaje = $survey->getPercentageVotes($lenguaje['votos']);
