@@ -6,12 +6,15 @@
       function __construct(){
          // echo "<p>Nueva app</p>";
 
-         $url=$_GET['url'];
-         $url=rtrim($url,'/');
+         $url = isset($_GET['url']) ? $_GET['url']: null;         
          $url=explode('/', $url);
 
-         // var_dump($url);
- 
+         if(empty($url[0])){
+            $archivoController='controllers/main.php';
+            require_once $archivoController;
+            $controller= new Main();
+            return false;
+         }
          $archivoController='controllers/'.$url[0].'.php';
          if(file_exists($archivoController)){
             require_once $archivoController;
