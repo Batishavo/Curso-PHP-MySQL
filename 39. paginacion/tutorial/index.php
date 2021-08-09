@@ -10,12 +10,19 @@
 <body>
 <?php
         include_once 'peliculas.php';  
+        $peliculas= new Peliculas(1);
 ?>
     <div id="container">
         <div id="paginas">
+            <?php
+                $peliculas->mostrarPaginas();
+            ?>
         </div>
 
         <div id="peliculas">
+            <?php 
+                $peliculas->mostrarPeliculas();
+            ?>
         </div>
 
     </div>

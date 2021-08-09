@@ -11,7 +11,7 @@ class DB{
         $this->host     = 'localhost';
         $this->db       = 'peliculas';
         $this->user     = 'root';
-        $this->password = "123!\"·QWE";
+        $this->password = "";
         $this->charset  = 'utf8mb4';
     }
 
