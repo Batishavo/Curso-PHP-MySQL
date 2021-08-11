@@ -15,23 +15,19 @@
         //validando tamaño del archivo
         $size=$_FILES["file"]["size"];
 
-        if($size>500000){
-            echo "El archivo tiene que ser menor a 500kb";
-        }
-        else{
-            if($tipoArchivo=="jpg" || $tipoArchivo=="jpeg"){
-                //Se valido el archivo correctamente
-                if(move_uploaded_file($_FILES["file"]["tmp_name"],$archivo)){
-                    echo "El archivo se subio correctamente";
-                }
-                else{
-                    echo "Hubo un error en la subida del archivo";
-                }
+        if($tipoArchivo=="jpg" || $tipoArchivo=="jpeg"){
+            //Se valido el archivo correctamente
+            if(move_uploaded_file($_FILES["file"]["tmp_name"],$archivo)){
+                echo "El archivo se subio correctamente";
             }
             else{
-                echo "solo se admiten Archivos jpg/jpeg";
+                echo "Hubo un error en la subida del archivo";
             }
         }
+        else{
+            echo "solo se admiten Archivos jpg/jpeg";
+        }
+        
     }
     else{
         echo "El documento no es una imagen";
