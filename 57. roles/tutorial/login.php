@@ -4,11 +4,12 @@
     session_start();
 
     if(isset($_GET['cerrar_sesion'])){
-        session_unset();
+        session_unset(); 
 
-        session_destroy();
+        // destroy the session 
+        session_destroy(); 
     }
-
+    
     if(isset($_SESSION['rol'])){
         switch($_SESSION['rol']){
             case 1:
@@ -22,39 +23,36 @@
             default:
         }
     }
-
+    
     if(isset($_POST['username']) && isset($_POST['password'])){
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-
-        $db = new Database();
-        $query = $db->connect()->prepare('SELECT*FROM usuarios WHERE username = :username AND password = :password');
-        $query->execute(['username' => $username, 'password' => $password]);
-
-        $row = $query->fetch(PDO::FETCH_NUM);
-        if($row == true){
-            // validar rol
+        $username=$_POST['username'];
+        $password= $_POST['password'];
+        $db=new Database();
+        $query=$db->connect()->prepare('SELECT * FROM usuarios WHERE username=:username AND password=:password');
+        $query->execute(['username'=> $username,'password'=>'password']);
+        $row=$query->fetch(PDO::FETCH_NUM);
+        if($row==true){
             $rol = $row[3];
+            
             $_SESSION['rol'] = $rol;
-
-            switch($_SESSION['rol']){
+            switch($rol){
                 case 1:
                     header('location: admin.php');
                 break;
-    
+
                 case 2:
                 header('location: colab.php');
                 break;
-    
+
                 default:
             }
-        }else{
-            // no existe el usuario
-            echo "El usuario o contraseña son incorrectos";
         }
-
+        else{
+            echo "Usaario y contraseña correctos";
+        }
     }
-    
+
+
 
 ?>
 <!DOCTYPE html>
